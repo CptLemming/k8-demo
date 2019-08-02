@@ -1,0 +1,14 @@
+version: "2.3"
+
+services:
+  ui:
+    image: cptlemming/k8-ui:1.0.0
+    ports:
+      - 3000:80
+    links:
+      - api
+
+  api:
+    image: cptlemming/k8-api:v1.0.0
+    ports:
+      - 3500:3500

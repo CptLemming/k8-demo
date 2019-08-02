@@ -1,0 +1,17 @@
+# IDE
+.idea
+.DS_Store
+.vscode
+jsconfig.json
+.gradle
+.classpath
+.project
+.settings/
+backend/*/bin
+orpheus.iml
+
+# Packages
+node_modules
+
+# Misc
+yarn-error.log

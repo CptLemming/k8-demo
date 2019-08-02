@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: k8-demo
+spec:
+  containers:
+    - image: cptlemming/k8-ui:1.0.3
+      name: k8-ui
+      ports:
+        - containerPort: 80
+          hostPort: 3000
+    - image: cptlemming/k8-api:1.0.1
+      name: k8-api
+      env:
+          - name: DB_HOST
+            value: "localhost"
+          - name: DB_PORT
+            value: "5000"
+      ports:
+        - containerPort: 3500
+          hostPort: 3500
+    - image: cptlemming/k8-db:1.0.0
+      name: k8-db
+      ports:
+        - containerPort: 5000
