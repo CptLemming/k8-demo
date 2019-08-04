@@ -2,13 +2,23 @@ version: "2.3"
 
 services:
   ui:
-    image: cptlemming/k8-ui:1.0.0
+    image: cptlemming/k8-ui:1.0.3
     ports:
       - 3000:80
     links:
       - api
 
   api:
-    image: cptlemming/k8-api:v1.0.0
+    image: cptlemming/k8-api:1.0.1
     ports:
       - 3500:3500
+    links:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5000
+
+  db:
+    image: cptlemming/k8-db:1.0.0
+    ports:
+      - 5000:5000
