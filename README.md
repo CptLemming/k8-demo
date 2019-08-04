@@ -43,6 +43,12 @@ $ kubectl delete pod/k8-demo
 $ kubectl delete ingress/k8-ingress
 ```
 
+### View containers running in a pod
+
+```sh
+$ kubectl describe pod/k8-demo -n default
+```
+
 ## Services
 
 ### Show running
@@ -87,4 +93,15 @@ Add hosts entry (`C:\Windows\System32\Drivers\etc\hosts` or `/etc/hosts`):
 
 ```
 192.168.1.79 example.com
+```
+
+## Tasks
+
+### Run task on container in a pod
+
+```sh
+# pod = k8-app-1
+# container = k8-api-1
+# command = yarn test
+$ kubectl exec k8-app-1 -c k8-api-1 yarn test
 ```
