@@ -24,7 +24,7 @@ function ShoppingList() {
 
   return (
     <div className="ShoppingList">
-      <h1>Shopping list</h1>
+      <h1>My Shopping list</h1>
       {details.length === 0 && <p>No details to show</p>}
       {details.map(detail => (
         <div key={detail.id}>
