@@ -1,0 +1,16 @@
+{
+  "name": "k8-e2e-master",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "ts-node-dev --respawn --transpileOnly ./index.ts"
+  },
+  "dependencies": {
+    "@types/node": "^12.6.9",
+    "@types/ws": "^6.0.1",
+    "ts-node-dev": "^1.0.0-pre.40",
+    "typescript": "^3.5.3",
+    "ws": "^7.1.1"
+  }
+}
