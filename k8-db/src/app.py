@@ -6,17 +6,21 @@ app = Flask(__name__)
 items = [
   {
     'id': 1,
-    'label': '3mm endmill',
+    'label': '20x20 extrusion',
   },
   {
     'id': 2,
-    'label': '2mm dovetail',
+    'label': '20x40 extrusion',
   },
   {
     'id': 3,
-    'label': '3mm 90deg engraver',
+    'label': '100x100x3mm plate',
   },
-];
+  {
+    'id': 4,
+    'label': '20x20 corner',
+  },
+]
 
 
 @app.route("/items", methods=['GET'])
