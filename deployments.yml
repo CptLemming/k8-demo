@@ -12,7 +12,7 @@ spec:
       ports:
         - containerPort: 80
           hostPort: 3000
-    - image: cptlemming/k8-api:1.0.1
+    - image: cptlemming/k8-api:1.1.0
       name: k8-api-1
       env:
           - name: DB_HOST
@@ -53,7 +53,7 @@ spec:
       ports:
         - containerPort: 80
           hostPort: 3001
-    - image: cptlemming/k8-api:1.0.1
+    - image: cptlemming/k8-api:1.1.0
       name: k8-api-2
       env:
           - name: DB_HOST
