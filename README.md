@@ -14,6 +14,30 @@ Normal start up:
 $ minikube start
 ```
 
+## Use local docker as kubernetes image store
+
+```
+# *Nix
+$ eval($minikube docker-env)
+
+# Windows PowerShell
+$ & minikube docker-env | Invoke-Expression
+```
+
+## Transfer docker image
+
+### Save image
+
+```
+$ docker image save -o k8-ui.tar cptlemming/k8-ui:1.0.3
+```
+
+### Load iamge
+
+```
+$ docker load -i k8-ui.tar
+```
+
 ## Manage pods
 
 ### Show running
