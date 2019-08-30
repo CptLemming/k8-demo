@@ -8,6 +8,12 @@ First time startup (windows):
 minikube start --vm-driver=hyperv --hyperv-virtual-switch=minikube
 ```
 
+First time startup (Linix):
+
+```sh
+sudo minikube start --vm-driver=none --apiserver-ips 127.0.0.1 --apiserver-name localhost
+```
+
 Normal start up:
 
 ```sh
