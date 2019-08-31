@@ -42,10 +42,10 @@ spec:
     - image: cptlemming/k8-api:1.1.0
       name: k8-api-1
       env:
-          - name: DB_HOST
-            value: "localhost"
-          - name: DB_PORT
-            value: "5000"
+        - name: DB_HOST
+          value: "localhost"
+        - name: DB_PORT
+          value: "5000"
       ports:
         - containerPort: 3500
           hostPort: 3500
@@ -56,10 +56,10 @@ spec:
     - image: cptlemming/k8-e2e-node:1.0.1
       name: k8-e2e-1
       env:
-          - name: WS_HOST
-            value: "k8-e2e-service"
-          - name: WS_PORT
-            value: "4000"
+        - name: WS_HOST
+          value: "k8-e2e-service"
+        - name: WS_PORT
+          value: "4000"
 ---
 kind: Service
 apiVersion: v1
@@ -83,7 +83,7 @@ spec:
   minReadySeconds: 15
   strategy:
     type: RollingUpdate
-    rollingUpdate: 
+    rollingUpdate:
       maxUnavailable: 1
       maxSurge: 1
   template:
@@ -99,10 +99,10 @@ spec:
         - image: cptlemming/k8-api:1.1.0
           name: k8-api-2
           env:
-              - name: DB_HOST
-                value: "localhost"
-              - name: DB_PORT
-                value: "5000"
+            - name: DB_HOST
+              value: "localhost"
+            - name: DB_PORT
+              value: "5000"
           ports:
             - containerPort: 3500
         - image: cptlemming/k8-db:2.0.0
@@ -112,10 +112,10 @@ spec:
         - image: cptlemming/k8-e2e-node:1.0.1
           name: k8-e2e-2
           env:
-              - name: WS_HOST
-                value: "k8-e2e-service"
-              - name: WS_PORT
-                value: "4000"
+            - name: WS_HOST
+              value: "k8-e2e-service"
+            - name: WS_PORT
+              value: "4000"
 ---
 kind: Service
 apiVersion: v1
@@ -129,7 +129,7 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
----  
+---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -142,14 +142,14 @@ spec:
     - host: app1.k8-demo.com
       http:
         paths:
-        - path: /(.*)
-          backend:
-            serviceName: k8-service-1
-            servicePort: 80
+          - path: /(.*)
+            backend:
+              serviceName: k8-service-1
+              servicePort: 80
     - host: app2.k8-demo.com
       http:
         paths:
-        - path: /(.*)
-          backend:
-            serviceName: k8-service-2
-            servicePort: 80
+          - path: /(.*)
+            backend:
+              serviceName: k8-service-2
+              servicePort: 80
