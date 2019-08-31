@@ -1,6 +1,6 @@
 FROM python
 RUN pip install redis
-COPY ./worker.py /worker.py
+COPY ./seeder.py /seeder.py
 COPY ./rediswq.py /rediswq.py
 
-CMD python worker.py
+CMD python seeder.py
