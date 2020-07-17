@@ -26,6 +26,30 @@ network:
 sudo netplan --debug apply
 ```
 
+## Allow nodes to be browsed by hostname
+
+```
+sudo apt-get install avahi-daemon avahi-discover avahi-utils libnss-mdns mdns-scan
+```
+
+Edit /etc/avahi/avahi-daemon.conf
+
+```
+domain-name=local
+allow-interfaces=enp4s0f0
+use-iff-running=yes
+```
+
+## Setup ssh keys
+
+```
+ssh-keygen
+touch ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+```
+
+Add host SSH key to ~/.ssh/authorized_keys
+
 ## Configure docker
 
 Add docker config
@@ -116,7 +140,9 @@ swapoff -a
 sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
 ```
 
-## Configure control plane
+## Master node
+
+### Configure control plane
 
 Initialize control plane
 
@@ -125,7 +151,7 @@ TOKEN=$(sudo kubeadm token generate)
 kubeadm init --token=${TOKEN} --kubernetes-version=v1.18.6 --pod-network-cidr=10.200.0.0/16
 ```
 
-## Configure kubectl
+### Configure kubectl
 
 ```sh
 mkdir -p $HOME/.kube
@@ -133,13 +159,15 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
-## Add CNI
+### Add CNI
 
 ```sh
 curl -sSL https://raw.githubusercontent.com/coreos/flannel/v0.12.0/Documentation/kube-flannel.yml | kubectl apply -f -
 ```
 
-## Join a node
+## Slave node
+
+### Join a node
 
 ```sh
 kubeadm join 192.168.1.200:6443 --token 1aj3cw.evp7kdzs08p4a5iv \
