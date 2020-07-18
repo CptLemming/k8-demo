@@ -181,3 +181,21 @@ By default, your cluster will not schedule Pods on the control-plane node for se
 ```sh
 kubectl taint nodes --all node-role.kubernetes.io/master-
 ```
+
+## Setup ingress controller
+
+```sh
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.34.1/deploy/static/provider/baremetal/deploy.yaml
+```
+
+Get port mapping
+
+```sh
+kubectl -n ingress-nginx get svc
+```
+
+Get hosted IP
+
+```sh
+kubectl get ingress
+```
