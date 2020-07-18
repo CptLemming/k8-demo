@@ -74,13 +74,16 @@ spec:
       port: 80
       targetPort: 80
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: k8-app-2
 spec:
   replicas: 2
   minReadySeconds: 15
+  selector:
+    matchLabels:
+      app: k8-app-2
   strategy:
     type: RollingUpdate
     rollingUpdate:
