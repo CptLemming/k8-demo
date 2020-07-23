@@ -242,3 +242,62 @@ Use helm to install NFS provisioner
 ```sh
 helm install stable/nfs-client-provisioner --set nfs.server=flat-node-01.local --set nfs.path=/srv/nfs
 ```
+
+## Install jenkins 
+
+```sh
+kubectl create namespace jenkins
+```
+
+Add to k8-jenkins.yaml
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      containers:
+        - name: jenkins
+          image: jenkins/jenkins:lts
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: jenkins-home
+              mountPath: /var/jenkins_home
+      volumes:
+        - name: jenkins-home
+          emptyDir: {}
+```
+
+Add to k8-jenkins.yaml
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: jenkins
+```
+
+Get login password
+
+```
+kubectl get pods --namespace jenkins
+kubectl logs jenkins-deployment-45345423412-k9003 --namespace jenkins
+```
