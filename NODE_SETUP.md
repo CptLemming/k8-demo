@@ -59,6 +59,7 @@ sudo mkdir /etc/docker
 sudo cat > /etc/docker/daemon.json <<EOF
 {
   "exec-opts": ["native.cgroupdriver=systemd"],
+  "data-root": "/srv/docker",
   "log-driver": "json-file",
   "log-opts": {
     "max-size": "100m"
