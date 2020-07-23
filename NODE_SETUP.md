@@ -207,3 +207,38 @@ Get hosted IP
 ```sh
 kubectl get ingress
 ```
+
+## Setup storage class
+
+```sh
+sudo mkdir -p /srv/nfs
+sudo chown nobody:nogroup /srv/nfs
+sudo apt install nfs-kernel-server
+sudo systemctl enable nfs-kernel-server
+sudo systemctl start nfs-kernel-server
+```
+
+Add to /etc/exports
+
+```
+/srv/nfs    *(rw,sync,no_subtree_check,no_root_squash,no_all_squash,insecure)
+```
+
+```sh
+sudo exportfs -rav
+```
+
+Verify connection the other node
+
+```sh
+sudo apt install nfs-common
+sudo mkdir -p /mnt/nfs
+sudo mount -t nfs flat-node-01.local:/srv/nfs /mnt/nfs
+sudo unmount /mnt/nfs
+```
+
+Use helm to install NFS provisioner
+
+```sh
+helm install stable/nfs-client-provisioner --set nfs.server=flat-node-01.local --set nfs.path=/srv/nfs
+```
