@@ -240,7 +240,8 @@ sudo unmount /mnt/nfs
 Use helm to install NFS provisioner
 
 ```sh
-helm install stable/nfs-client-provisioner --set nfs.server=flat-node-01.local --set nfs.path=/srv/nfs
+helm repo add stable https://kubernetes-charts.storage.googleapis.com
+helm install nfs-client-provisioner stable/nfs-client-provisioner --set nfs.server=flat-node-01.local --set nfs.path=/srv/nfs
 ```
 
 ## Install jenkins 
