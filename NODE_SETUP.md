@@ -171,6 +171,7 @@ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 
 ```sh
 curl -sSL https://raw.githubusercontent.com/coreos/flannel/v0.12.0/Documentation/kube-flannel.yml | kubectl apply -f -
+sudo iptables -P FORWARD ACCEPT
 ```
 
 ## Slave node
