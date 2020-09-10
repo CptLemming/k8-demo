@@ -79,6 +79,12 @@ GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
 sudo update-grub
 ```
 
+Configure overlay fs to optimise in docker - /etc/modprobe.d/overlayfs.conf
+
+```
+options overlay redirect_dir=on
+```
+
 Install docker (v19.4)
 
 ```sh
