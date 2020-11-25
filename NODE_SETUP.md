@@ -22,6 +22,17 @@ network:
                                 addresses: [8.8.4.4,8.8.8.8]
 ```
 
+or
+
+```yaml
+network:
+        version: 2
+        renderer: networkd
+        ethernets:
+                enp4s0f0:
+                        dhcp4: yes
+```
+
 ```sh
 sudo netplan --debug apply
 ```
