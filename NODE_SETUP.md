@@ -267,6 +267,12 @@ helm install nfs-client-provisioner stable/nfs-client-provisioner --set nfs.serv
 kubectl create namespace jenkins
 ```
 
+Allow the cluster user to access the jenkins ns
+
+```sh
+kubectl create clusterrolebinding adminClusterRoleBinding --clusterrole=cluster-admin --serviceaccount=kube-system:default
+```
+
 Add to k8-jenkins.yaml
 
 ```yaml
