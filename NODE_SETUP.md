@@ -155,7 +155,7 @@ Initialize control plane
 
 ```sh
 TOKEN=$(sudo kubeadm token generate)
-kubeadm init --token=${TOKEN} --kubernetes-version=v1.18.6 --pod-network-cidr=10.244.0.0/16
+kubeadm init --token=${TOKEN} --kubernetes-version=v1.19.4 --pod-network-cidr=10.244.0.0/16
 ```
 
 ### Configure kubectl
