@@ -181,7 +181,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ```
 sudo apt install helm
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 ```
 
 ### Add CNI
