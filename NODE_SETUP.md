@@ -238,7 +238,7 @@ sudo systemctl start nfs-kernel-server
 Add to /etc/exports
 
 ```
-/srv/nfs    *(rw,sync,no_subtree_check,no_root_squash,no_all_squash,insecure)
+/srv/nfs    *(rw,async,no_subtree_check,no_root_squash,no_all_squash,insecure)
 ```
 
 ```sh
